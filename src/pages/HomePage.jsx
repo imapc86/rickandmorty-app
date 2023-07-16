@@ -3,11 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CharacterSearch, CharacterGrid } from '../components';
 import { getCharacters } from '../store/slice/thunks';
 
-import titleImg from '../assets/img/title.png';
-import imgHelp from '../assets/img/spiral.png'
-import imgError from '../assets/img/error.png'
-
-
 export const HomePage = () => {
 
   const dispatch = useDispatch();
@@ -16,11 +11,11 @@ export const HomePage = () => {
   const onSubmitSearch = (characterToSearch) => {
     dispatch(getCharacters(characterToSearch))
   }
- 
+   
   return (
     <div className='container'>
       {/* Title */}
-      <img className="title-img" src={titleImg} alt="title" />
+      <img className="title-img" src={process.env.REACT_APP_PUBLIC_URL + '/assets/img/title.png'} alt="title" />
       <h2 className="title-app">App</h2>
 
       {/* Search component */}
@@ -30,7 +25,7 @@ export const HomePage = () => {
         /* Loading Component */
         isLoading && (
           <div className="img-help">
-            <img className="img-home" src={imgHelp} alt="img-help" />
+            <img className="img-home" src={process.env.REACT_APP_PUBLIC_URL + '/assets/img/spiral.png'} alt="img-help" />
             <p>Loading...</p>
           </div>
         )
@@ -38,7 +33,7 @@ export const HomePage = () => {
       {
         isError && (
           <div className="img-help">
-            <img className="img-home" src={imgError} alt="img-help" />
+            <img className="img-home" src={process.env.REACT_APP_PUBLIC_URL + '/assets/img/error.png'} alt="img-help" />
             <p>Not found results, try again</p>
           </div>
         )

@@ -51,6 +51,13 @@ export const Paginator = () => {
     setPageToShow(pagesToShow);
   }
 
+  const scrollToTop = ()=>{
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
   useEffect(() => {
     getPagination(currentPage, totalPages);
     
@@ -58,10 +65,11 @@ export const Paginator = () => {
 
   const onChangePage = (pageToChange) => {
 
-    if(pageToChange <= 0 || pageToChange == currentPage || pageToChange > totalPages){
+    if(pageToChange <= 0 || pageToChange === currentPage || pageToChange > totalPages){
       return;
     }
     dispatch(getCharacters(characterToSearch, pageToChange));
+    scrollToTop();
   }
   
   return (
@@ -74,7 +82,7 @@ export const Paginator = () => {
               pageToShow.map(page => 
                 <span 
                   onClick={()=>onChangePage(page)}
-                  key={page} className={page == currentPage ? 'active': ''} >{page}</span>
+                  key={page} className={page === currentPage ? 'active': ''} >{page}</span>
               )
             }
             <span onClick={()=>onChangePage(currentPage + 1)}>&raquo;</span>

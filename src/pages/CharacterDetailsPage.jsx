@@ -3,9 +3,6 @@ import { CharacterDetail } from '../components';
 
 import { Link, useParams } from 'react-router-dom';
 
-import titleImg from '../assets/img/title.png';
-import imgHelp from '../assets/img/spiral.png'
-import imgError from '../assets/img/error.png'
 import { useEffect } from 'react';
 import { getCharacterById } from '../store/slice/thunks';
 
@@ -24,7 +21,7 @@ export const CharacterDetailsPage = () => {
 
   return (
     <div className='container'>
-      <img className="title-img" src={titleImg} alt="title" />
+      <img className="title-img" src={process.env.REACT_APP_PUBLIC_URL + '/assets/img/title.png'} alt="title" />
       <h2 className="title-app">App</h2>
 
       <Link className="return-link" to="/">
@@ -35,7 +32,7 @@ export const CharacterDetailsPage = () => {
         /* Loading Component */
         isLoading && (
           <div className="img-help">
-            <img className="img-home" src={imgHelp} alt="img-help" />
+            <img className="img-home" src={process.env.REACT_APP_PUBLIC_URL + '/assets/img/spiral.png'} alt="img-help" />
             <p>Loading...</p>
           </div>
         )
@@ -43,7 +40,7 @@ export const CharacterDetailsPage = () => {
       {
         isError && (
           <div className="img-help">
-            <img className="img-home" src={imgError} alt="img-help" />
+            <img className="img-home" src={process.env.REACT_APP_PUBLIC_URL + '/assets/img/error.png'} alt="img-help" />
             <p>Not found results, try again</p>
           </div>
         )
